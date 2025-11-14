@@ -1,0 +1,325 @@
+{
+	"info": {
+		"_postman_id": "85cdb3fe-54e5-44d7-8a03-a2860dd8022e",
+		"name": "Postman_Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46493440",
+		"_collection_link": "https://www.postman.com/gg0000-5901/workspace/api-testing/collection/46493440-85cdb3fe-54e5-44d7-8a03-a2860dd8022e?action=share&source=collection_link&creator=46493440"
+	},
+	"item": [
+		{
+			"name": "Api CRUD",
+			"item": [
+				{
+					"name": "Get all products",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Get a single product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE URL}}/56",
+							"host": [
+								"{{BASE URL}}"
+							],
+							"path": [
+								"56"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE URL}}search?q=tea",
+							"host": [
+								"{{BASE URL}}search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "tea"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all products’ categories",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Add a new product",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Green Tea\",\r\n  \"description\": \"Traditional green tea from Japan\",\r\n  \"price\": 2.99,\r\n  \"discountPercentage\": 1,\r\n  \"rating\": 4.9,\r\n  \"stock\": 40,\r\n  \"brand\": \"Matcha\",\r\n  \"category\": \"groceries\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE URL}}/add",
+							"host": [
+								"{{BASE URL}}"
+							],
+							"path": [
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\" : \"Iphone x5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE URL}}/2",
+							"host": [
+								"{{BASE URL}}"
+							],
+							"path": [
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE URL}}/57",
+							"host": [
+								"{{BASE URL}}"
+							],
+							"path": [
+								"57"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Error handling",
+			"item": [
+				{
+					"name": "get all products error",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE URL}}/non_existent",
+							"host": [
+								"{{BASE URL}}"
+							],
+							"path": [
+								"non_existent"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get single product error",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE URL}}/195",
+							"host": [
+								"{{BASE URL}}"
+							],
+							"path": [
+								"195"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add a products error",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Green Tea\",\r\n  \"description\": \"Traditional green tea from Japan\",\r\n  \"price\": 2.99,\r\n  \"discountPercentage\": 1,\r\n  \"rating\": 4.9,\r\n  \"stock\": 40,\r\n  \"brand\": \"Matcha\",\r\n  \"category\": \"groceries\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE URL}}/non_existent/add",
+							"host": [
+								"{{BASE URL}}"
+							],
+							"path": [
+								"non_existent",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a product Error",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\" : \"Iphone x5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE URL}}/195",
+							"host": [
+								"{{BASE URL}}"
+							],
+							"path": [
+								"195"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a product error",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE URL}}/210",
+							"host": [
+								"{{BASE URL}}"
+							],
+							"path": [
+								"210"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE URL",
+			"value": ""
+		}
+	]
+}
